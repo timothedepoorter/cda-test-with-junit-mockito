@@ -43,4 +43,17 @@ public class RechercheVillesTest {
         // Assert
         Assertions.assertEquals(expected, result);
     }
+
+    @Test
+    public void whenCityInputIsApe_Then_ReturnBusapest() {
+        // Arrange
+        String cityInput = "ape";
+        List<String> expected = List.of("Budapest");
+
+        // Act
+        List<String> result = rechercheVilles.rechercher(cityInput);
+
+        // Assert
+        Assertions.assertEquals(expected, result);
+    }
 }
