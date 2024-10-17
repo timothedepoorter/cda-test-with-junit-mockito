@@ -21,8 +21,21 @@ public class RechercheVillesTest {
     @Test
     public void whenCityInputIsGreaterThan1Char_Then_ReturnValenceVancouver() {
         // Arrange
-        String cityInput = "va";
+        String cityInput = "Va";
         List<String> expected = List.of("Valence", "Vancouver");
+
+        // Act
+        List<String> result = rechercheVilles.rechercher(cityInput);
+
+        // Assert
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void whenCityInputIsSiDnEy_Then_ReturnSidney() {
+        // Arrange
+        String cityInput = "SiDnEy";
+        List<String> expected = List.of("SiDnEy");
 
         // Act
         List<String> result = rechercheVilles.rechercher(cityInput);
