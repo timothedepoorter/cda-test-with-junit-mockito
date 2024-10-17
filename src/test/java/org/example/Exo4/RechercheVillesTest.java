@@ -56,4 +56,17 @@ public class RechercheVillesTest {
         // Assert
         Assertions.assertEquals(expected, result);
     }
+
+    @Test
+    public void whenCityInputIsAsterisk_Then_ReturnAllCities() {
+        // Arrange
+        String cityInput = "*";
+        List<String> expected = rechercheVilles.getVilles();
+
+        // Act
+        List<String> result = rechercheVilles.rechercher(cityInput);
+
+        // Assert
+        Assertions.assertEquals(expected, result);
+    }
 }
