@@ -17,4 +17,17 @@ public class RechercheVillesTest {
         // Act & Assert
         Assertions.assertThrows(CityNameTooShortException.class, () -> rechercheVilles.rechercher(cityInput));
     }
+
+    @Test
+    public void whenCityInputIsGreaterThan1Char_Then_ReturnValenceVancouver() {
+        // Arrange
+        String cityInput = "va";
+        List<String> expected = List.of("Valence", "Vancouver");
+
+        // Act
+        List<String> result = rechercheVilles.rechercher(cityInput);
+
+        // Assert
+        Assertions.assertEquals(expected, result);
+    }
 }
