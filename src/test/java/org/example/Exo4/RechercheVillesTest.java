@@ -32,10 +32,10 @@ public class RechercheVillesTest {
     }
 
     @Test
-    public void whenCityInputIsSiDnEy_Then_ReturnSidney() {
+    public void whenCityInputIsSyDnEy_Then_ReturnSydney() {
         // Arrange
-        String cityInput = "SiDnEy";
-        List<String> expected = List.of("Sidney");
+        String cityInput = "SyDnEy";
+        List<String> expected = List.of("Sydney");
 
         // Act
         List<String> result = rechercheVilles.rechercher(cityInput);
