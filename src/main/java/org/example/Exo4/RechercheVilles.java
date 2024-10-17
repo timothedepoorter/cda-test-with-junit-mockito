@@ -8,4 +8,8 @@ public class RechercheVilles {
     public RechercheVilles(List<String> villes) {
         this.villes = villes;
     }
+
+    public List<String> getVilles() {
+        return villes;
+    }
 }
