@@ -10,7 +10,7 @@ public class RechercheVillesTest {
     private final RechercheVilles rechercheVilles = new RechercheVilles(villes);
 
     @Test
-    public void whenCityInputIsLessThan2Char_Then_ThrowNotFoundException() {
+    public void whenCityInputIsLessThan2Char_Then_ThrowCityNameTooShortException() {
         // Arrange
         String cityInput = "a";
 
@@ -35,7 +35,7 @@ public class RechercheVillesTest {
     public void whenCityInputIsSiDnEy_Then_ReturnSidney() {
         // Arrange
         String cityInput = "SiDnEy";
-        List<String> expected = List.of("SiDnEy");
+        List<String> expected = List.of("Sidney");
 
         // Act
         List<String> result = rechercheVilles.rechercher(cityInput);
@@ -45,7 +45,7 @@ public class RechercheVillesTest {
     }
 
     @Test
-    public void whenCityInputIsApe_Then_ReturnBusapest() {
+    public void whenCityInputIsApe_Then_ReturnBudapest() {
         // Arrange
         String cityInput = "ape";
         List<String> expected = List.of("Budapest");
