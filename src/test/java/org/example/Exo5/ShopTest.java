@@ -4,93 +4,117 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ShopTest {
 
     private Shop shop;
-    private List<Product> products = new ArrayList<>(1);
+    private Product product;
 
     @BeforeEach
     public void setUp() {
-        products.clear();
+        shop = new Shop();
     }
 
     @Test
-    public void whenSellIn0_Then_QualityDecreased2() {
+    public void whenUpdateProduct_Then_SellInDecreased1() {
         // Arrange
-        products = List.of(new Product("viande", "steack haché", 0, 50));
-        shop = new Shop(products);
-        List<Product> expected = products;
-        expected.get(0).setQuality(expected.get(0).getQuality() - 2);
+        product = new Product("viande", "steack haché", 15, 18);
+        int expected = 14;
 
         // Act
-        products.forEach(product -> shop.update(product));
+        shop.update(product);
 
         // Assert
-        Assertions.assertArrayEquals(expected.toArray(), products.toArray());
+        Assertions.assertEquals(expected, product.getSellIn());
     }
 
     @Test
-    public void whenQuality0AndDecreased1_Then_QualityKeepValue0() {
+    public void whenUpdateProduct_Then_QualityDecreased1() {
         // Arrange
-        products = List.of(new Product("viande", "steack haché", 15, 0));
-        shop = new Shop(products);
-        List<Product> expected = products;
-        expected.get(0).setSellIn(expected.get(0).getSellIn() - 1);
+        product = new Product("viande", "steack haché", 15, 18);
+        int expected = 17;
 
         // Act
-        products.forEach(product -> shop.update(product));
+        shop.update(product);
 
         // Assert
-        Assertions.assertArrayEquals(expected.toArray(), products.toArray());
+        Assertions.assertEquals(expected, product.getQuality());
     }
 
     @Test
-    public void whenQuality50AndIncreased1_Then_QualityKeepValue50() {
+    public void whenUpdateProductWithSellIn0_Then_QualityDecreased2() {
         // Arrange
-        products = List.of(new Product("produit laitier", "brie veilli", 15, 50));
-        shop = new Shop(products);
-        List<Product> expected = products;
-        expected.get(0).setSellIn(expected.get(0).getSellIn() - 1);
+        product = new Product("viande", "steack haché", 0, 18);
+        int expected = 16;
 
         // Act
-        products.forEach(product -> shop.update(product));
+        shop.update(product);
 
         // Assert
-        Assertions.assertArrayEquals(expected.toArray(), products.toArray());
+        Assertions.assertEquals(expected, product.getQuality());
     }
 
     @Test
-    public void whenSellIn12DecreasedOfBrieVeilli_Then_QualityIncreased1() {
+    public void whenUpdateProductWithQuality0_Then_QualityKeepValue0() {
         // Arrange
-        products = List.of(new Product("produit laitier", "brie veilli", 12, 25));
-        shop = new Shop(products);
-        List<Product> expected = products;
-        expected.get(0).setSellIn(expected.get(0).getSellIn() - 1);
-        expected.get(0).setQuality(expected.get(0).getQuality() + 1);
+        product = new Product("viande", "steack haché", 15, 0);
+        int expected = 0;
 
         // Act
-        products.forEach(product -> shop.update(product));
+        shop.update(product);
 
         // Assert
-        Assertions.assertArrayEquals(expected.toArray(), products.toArray());
+        Assertions.assertEquals(expected, product.getQuality());
     }
 
     @Test
-    public void whenSellInOfProduitLaitierDecreased_Then_QualityDecreased2() {
+    public void whenUpdateProductOfTypeDairyProduct_Then_QualityDecreased2() {
         // Arrange
-        products = List.of(new Product("produit laitier", "yaourt", 12, 25));
-        shop = new Shop(products);
-        List<Product> expected = products;
-        expected.get(0).setSellIn(expected.get(0).getSellIn() - 1);
-        expected.get(0).setQuality(expected.get(0).getQuality() - 2);
+        product = new Product("produit laitier", "yaourt", 15, 40);
+        int expected = 38;
 
         // Act
-        products.forEach(product -> shop.update(product));
+        shop.update(product);
 
         // Assert
-        Assertions.assertArrayEquals(expected.toArray(), products.toArray());
+        Assertions.assertEquals(expected, product.getQuality());
+    }
+
+    @Test
+    public void whenUpdateProductWithNameBrieVieilli_Then_QualityIncreased1() {
+        // Arrange
+        product = new Product("produit laitier", "brie vieilli", 15, 40);
+        int expected = 41;
+
+        // Act
+        shop.update(product);
+
+        // Assert
+        Assertions.assertEquals(expected, product.getQuality());
+    }
+
+    @Test
+    public void whenUpdateProductWithQuality50_Then_QualityKeepValue50() {
+        // Arrange
+        product = new Product("produit laitier", "brie vieilli", 15, 50);
+        int expected = 50;
+
+        // Act
+        shop.update(product);
+
+        // Assert
+        Assertions.assertEquals(expected, product.getQuality());
+    }
+
+    @Test
+    public void whenUpdateProductWithSellIn0AndOfTypeDairyProduct_Then_QualityDecreased4() {
+        // Arrange
+        product = new Product("produit laitier", "yaourt", 0, 50);
+        int expected = 46;
+
+        // Act
+        shop.update(product);
+
+        // Assert
+        Assertions.assertEquals(expected, product.getQuality());
     }
 }
